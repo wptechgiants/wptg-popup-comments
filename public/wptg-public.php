@@ -11,6 +11,8 @@ if (!class_exists('WPTG_Public')) {
 
         public function wptg_public_enqueue_scripts()
         {
+            wp_enqueue_style( 'wptg-frontend-style', plugin_dir_url(__FILE__) . 'assets/css/wptg-frontend-style.css', '', time() );
+
             wp_enqueue_script('wptgpc-public-script', plugin_dir_url(__FILE__) . 'assets/js/wptg-public.js', ['jquery'], '1.0.0', true);
             wp_enqueue_script('comment-reply');
             wp_localize_script('wptgpc-public-script', 'wptgPopupCommentsPublic', array(
@@ -337,9 +339,12 @@ if (!class_exists('WPTG_Public')) {
          */
         public function wptg_footer_popup_wrap()
         {
-            echo '<div class="wptg_popup_wrap">
-                <a class="close_popup"> X </a>
-                <div class="wptg_comments_html"></div>
+            echo '<div class="wptg-popup-comments-wrap">
+                <div class="wptg-popup-comments-overlay"></div>
+                <div class="wptg-popup-comments-inner">
+                    <a class="wptg-popup-comments-close"> X </a>
+                    <div class="wptg_comments_html"></div>
+                </div>
             </div>';
         }
 
@@ -357,7 +362,7 @@ if (!class_exists('WPTG_Public')) {
             ob_start();
 ?>
 
-            <a href="#" class="wptg_show_comments <?php echo esc_attr($atts['class']); ?>" data-id="<?php echo esc_attr($atts['post_id']); ?>"><?php echo esc_html($atts['label']); ?></a>
+            <a href="#" class="wptg-show-comments <?php echo esc_attr($atts['class']); ?>" data-id="<?php echo esc_attr($atts['post_id']); ?>"><?php echo esc_html($atts['label']); ?></a>
 <?php return ob_get_clean();
         }
     }

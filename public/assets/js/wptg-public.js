@@ -85,9 +85,12 @@ jQuery(function($) {
         return false;
     });
 
-    $('body').on('click', '.wptg_show_comments', function(e) {
+
+    // WPTG-POPUP-COMMENTS-WRAP
+    $('body').on('click', '.wptg-show-comments', function(e) {
         e.preventDefault();
-        var $discussion_wrapper = $('body .wptg_popup_wrap');
+        var $discussion_wrapper = $('body .wptg-popup-comments-wrap');
+        $discussion_wrapper.toggleClass('show');
         
         $.ajax({
             method: 'POST',
@@ -103,10 +106,31 @@ jQuery(function($) {
 
     });
 
-    $('body').on('click', '.close_popup', function(e) {
-        e.preventDefault();
-        $('body').find( '.wptg_comments_html').html('');
-    } );
+    // $('body').on('click', '.wptg-popup-comments-close', function(e) {
+    //     e.preventDefault();
+    //     $('body').find( '.wptg_comments_html').html('');
+    // } );
+    
+    
+    // POPUP COMMENTS
+    // $('.wptg-show-comments').on('click', function (e) {
+	// 	e.preventDefault();
+	// 	$('.wptg-popup-comments-wrap').toggleClass('show');
+	// });
+
+	jQuery(document).on('click', function (e) {
+		var container = jQuery(".wptg-popup-comments-wrap .wptg-popup-comments-inner");
+		var wcssLink = jQuery(".wptg-show-comments");
+		if (!container.is(e.target) && !wcssLink.is(e.target) && container.has(e.target).length === 0){
+			jQuery('.wptg-popup-comments-wrap').removeClass('show');
+		}
+	});
+    jQuery('.wptg-popup-comments-close').on('click', function (e) {
+		jQuery('.wptg-popup-comments-wrap').removeClass('show');
+	});
+
+
+
 
     jQuery.extend(jQuery.fn, {
         /*
@@ -129,4 +153,7 @@ jQuery(function($) {
             }
         },
     });
+
+
+
 });
