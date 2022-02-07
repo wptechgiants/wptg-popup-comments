@@ -1,4 +1,4 @@
-=== Locatepress ===
+=== WPTG Popup Comments ===
 Plugin URI: https://github.com/wptechgiants/wptg-popup-comments/
 Description: WPTG Popup Comments allows you to display your post comments in a popup. You can view the comments outside post single page.   
 Version: 1.0.0
@@ -43,9 +43,13 @@ Alternatively, you can also download the plugin using the download button on thi
 Yes, you can comment from the popup. It works same as the default comments and the comment is submitted via AJAX.
 
 == Screenshots ==
-1. Settings
 
 == Changelog ==
 
 = 1.0.0 =
 * First Push.
+
+== Upgrade Notice ==
+
+= 1.0.0 =
+Very first push
